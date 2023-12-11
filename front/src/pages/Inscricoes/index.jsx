@@ -16,7 +16,11 @@ function Inscricoes(){
             <section className={styles.container}>
                 <p className={styles.titulo}>Inscrições</p>
                 <div className={styles.box}>
-                 
+                    <Inscricao />
+                    <Inscricao />
+                    <Inscricao />
+                    <Inscricao />
+                    <Inscricao />
                 </div>
             </section>
             <Footer />
