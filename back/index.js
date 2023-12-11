@@ -17,6 +17,6 @@ app.listen(3000, () => {
     console.log('Servidor na porta 3000');
 });
 
-// Importando classesgit a
+// Importando classes
 const User = require('./model/User');
 const Inscricao = require('./model/Inscricao');
