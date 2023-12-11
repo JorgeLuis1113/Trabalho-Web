@@ -1,0 +1,62 @@
+.inscricao{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    width: 17%;
+    box-shadow: 5px 5px 10px #696b4670;
+    border-radius: 10px;
+    margin-bottom: 5rem;;
+}
+
+.inscricao img{
+    margin: 1rem;
+}
+
+.titulo{
+    align-self: center;
+}
+
+.titulo{
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+
+.logo{
+    width: 200px;
+    border-radius: 50%;
+    align-self: center;
+}
+
+.card button{
+    text-decoration: none;
+    color: var(--secondary);
+}
+
+.card button:hover{
+    color: var(--red);
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+}
+
+.btn{
+    width: 150px;
+    font-size: 1.125rem;
+    font-weight: bold;
+    border: 0;
+    border-radius: 3px;
+    margin: 0.5rem;
+    background-color: var(--primary);
+    color: var(--soft-white);
+}
+
+.btn:hover{
+    color: var(--terceary);
+}
+
+

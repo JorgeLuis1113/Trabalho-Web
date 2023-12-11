@@ -1,0 +1,40 @@
+.container{
+    width: 100%;
+    min-height: 92vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.container p{
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 3rem;
+}
+
+.botoes{
+    display: flex;
+    justify-content: center;
+}
+
+.btn{
+    width: 250px;
+    height: 40px;
+    font-size: 1.125rem;
+    font-weight: bold;
+    border: 0;
+    border-radius: 8px;
+    margin-right: 20px;
+    background-color: var(--gray);
+}
+
+.container a:hover{
+    color: var(--red);
+}
+
+.container a{
+    text-decoration: none;
+    color: var(--soft-white);
+}
+

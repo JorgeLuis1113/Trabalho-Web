@@ -1,0 +1,20 @@
+.container{
+    min-height: 92vh;
+}
+
+.titulo{
+    font-size: 4rem;
+    font-weight: bold;
+    margin-top: 3rem;;
+    margin-bottom: 3rem;
+    text-align: center;
+    color: var(--secondary);
+    text-shadow: 2px 2px 5px var(--secondary);
+}
+
+.box{
+    display: flex;
+    justify-content:space-around;
+    flex-wrap: wrap;
+    margin: 100px;
+}
