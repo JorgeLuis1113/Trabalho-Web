@@ -102,6 +102,25 @@ app.get('/republicas', verificaToken, (req, res) => {
     return res.json(republicasBD);
 });
 
+// Rota para exibir república específica
+app.get('/republicas/:nome', verificaToken, (req, res) => {
+
+    // Abertura do arquivo de repúblicas
+    const jsonPath = path.join(__dirname, '.', 'db', 'banco-dados-republicas.json');
+    const republicasBD = JSON.parse(fs.readFileSync(jsonPath, {encoding: 'utf8', flag: 'r'}));
+
+    const params = req.params;
+
+    // Busca da república pra retorno das informações
+    for(let rep of republicasBD) {
+        if(params.nome === rep.nome) {
+            return res.json(rep);
+        }
+    }
+    // Não foi encontrada
+    return res.status(403).send('República não encontrada');
+})
+
 // Verificação do token
 function verificaToken(req, res, next) {
     const authHeaders = req.headers['authorization'];
