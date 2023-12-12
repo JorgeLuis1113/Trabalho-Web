@@ -21,13 +21,40 @@ app.listen(3000, () => {
 const User = require('./model/User');
 const Inscricao = require('./model/Inscricao');
 
+// Autenticação do usuário
+app.post('/login', async (req, res) => {
+
+    // Extração dos dados do formulário
+    const {email, senha} = req.body;
+
+    // Abertura do arquivo de usuários
+    const jsonPath = path.join(__dirname, '.', 'db', 'banco-dados-usuario.json');
+    const usuariosBD = JSON.parse(fs.readFileSync(jsonPath, {encoding: 'utf8', flag: 'r'}))
+
+    // Teste de usuário no banco de dados
+    for(let user of usuariosBD) {
+        if(user.email === email) {
+            const senhaValida = await bcrypt.compare(senha, user.password);
+            
+            if(senhaValida) {
+                const token = jwt.sign(user, process.env.TOKEN);
+                return res.json({'token' : token});
+            }
+            else {
+                return res.status(402).send('Usuário ou senha incorretos');
+            }
+        }
+    }
+    // Não existe usuário com o email
+    return res.status(409).send(`Usuário com ${email} não existe. Considere criar uma conta!`);
+});
+
 // Verificação do token
 function verificaToken(req, res, next) {
     const authHeaders = req.headers['authorization'];
 
     // Bearer token
     const token = authHeaders && authHeaders.split(' ')[1];
-    console.log(token);
     
     if(token == null) {
         return res.status(401).send('Acesso negado');
