@@ -48,7 +48,7 @@ function Cadastro(){
             <section className={styles.container}>
                 <p>Cadastro</p>
                 <div className={styles.box}>
-                    <form className={styles.forms} onSubmite={handleSubmit(submit)} noValidate>
+                    <form className={styles.forms} onSubmit={handleSubmit(submit)} noValidate>
                         <label htmlFor="username" placeholder="usuário">Usuário</label>
                         <input type='text' id='username' {...register('username')}/>
                         <p className='erro'>{errors.username?.message}</p>
