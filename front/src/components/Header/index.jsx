@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import styles from './Header.module.css'
+import { Link } from 'react-router-dom';
+import styles from './Header.module.css';
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
