@@ -92,6 +92,16 @@ app.post('/cadastro', async (req, res) => {
     res.send('Usuário criado com sucesso');
 });
 
+// Rota de exibição de todas repúblicas
+app.get('/republicas', verificaToken, (req, res) => {
+
+    // Abertura do arquivo de repúblicas
+    const jsonPath = path.join(__dirname, '.', 'db', 'banco-dados-republicas.json');
+    const republicasBD = JSON.parse(fs.readFileSync(jsonPath, {encoding: 'utf8', flag: 'r'}));
+
+    return res.json(republicasBD);
+});
+
 // Verificação do token
 function verificaToken(req, res, next) {
     const authHeaders = req.headers['authorization'];
