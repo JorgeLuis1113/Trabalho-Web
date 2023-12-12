@@ -1,12 +1,19 @@
 [
-    {
-        "id": 1,
-        "username": "Mira",
-        "email": "mira@teste.com",
-        "password": "$2b$10$ALUfDbUgkPF1rDW2VjbDn.86Lr2ubj2bKlttUikjXucoUtVHegC8i",
-        "inscricoes": [
-            1,
-            2
-        ]
-      }
+  {
+    "id": 1,
+    "username": "Mira",
+    "email": "mira@teste.com",
+    "password": "$2b$10$ALUfDbUgkPF1rDW2VjbDn.86Lr2ubj2bKlttUikjXucoUtVHegC8i",
+    "inscricoes": [
+      1,
+      2
+    ]
+  },
+  {
+    "id": 2,
+    "username": "Xamã",
+    "email": "xama@teste.com",
+    "password": "$2b$10$Qqiop/HPDwfGaNI9hHpJYexmis3ewOSG.DbHN3r4PjStXE23YFRH.",
+    "inscricoes": []
+  }
 ]
