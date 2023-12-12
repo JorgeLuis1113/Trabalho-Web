@@ -46,24 +46,24 @@ function Cadastro(){
     return(
         <>
             <section className={styles.container}>
-                <p>Cadastro</p>
+                <p className={styles.titulo}>Cadastro</p>
                 <div className={styles.box}>
-                    <form className={styles.forms} onSubmite={handleSubmit(submit)} noValidate>
+                    <form className={styles.forms} onSubmit={handleSubmit(submit)} noValidate>
                         <label htmlFor="username" placeholder="usuário">Usuário</label>
                         <input type='text' id='username' {...register('username')}/>
-                        <p className='erro'>{errors.username?.message}</p>
+                        <p className={styles.erro}>{errors.username?.message}</p>
 
                         <label htmlFor="email" placeholder="email">Email</label>
                         <input type='text' id='email' {...register('email')}/>
-                        <p className='erro'>{errors.email?.message}</p>
+                        <p className={styles.erro}>{errors.email?.message}</p>
 
                         <label htmlFor="password" placeholder="email">Senha</label>
                         <input type='password' id='password' {...register('password')}/>
-                        <p className='erro'>{errors.password?.message}</p>
+                        <p className={styles.erro}>{errors.password?.message}</p>
 
                         <label htmlFor="passwordConf" placeholder="senha1">Confirme a senha</label>
                         <input type='password' id='passwordConf' {...register('passwordConf')}/>
-                        <p className='erro'>{errors.passwordConf?.message}</p>
+                        <p className={styles.erro}>{errors.passwordConf?.message}</p>
 
                         <button className={styles.btn}>Criar Usuário</button>
                     </form>
