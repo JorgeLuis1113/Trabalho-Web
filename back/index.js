@@ -206,6 +206,27 @@ app.get('/inscricoes/:idUser', verificaToken, (req, res) => {
 });
 
 
+// Rota para alterar a senha de usuário
+app.post('/update-login', verificaToken, async (req, res) => {
+    const {newPassword, id} = req.body;
+
+    // Abertura do arquivo de usuários
+    const jsonPathUsuarios = path.join(__dirname, '.', 'db', 'banco-dados-usuario.json');
+    const usuariosBD = JSON.parse(fs.readFileSync(jsonPathUsuarios, { encoding: 'utf8', flag: 'r' }));
+
+    //gerar uma senha cryptografada
+    const salt = await bcrypt.genSalt(10);
+    const passwordCrypt = await bcrypt.hash(newPassword,salt);
+    
+    // Busca do usuário com o mesmo id que o retornado no body
+    for(let user of usuariosBD) {
+        if(id === user.id) {
+            user.password = passwordCrypt;
+        }
+    }
+});
+
+
 // Rota para retorno das informações do usuário descriptografadas
 app.get('/descrypt', verificaToken, (req, res) => {
     
