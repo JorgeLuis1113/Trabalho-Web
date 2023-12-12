@@ -172,6 +172,41 @@ app.post('/formulario', verificaToken, (req, res) => {
 });
 
 
+// Rota para listar inscrições do usuário
+app.get('/inscricoes/:idUser'. verificaToken, (req, res) => {
+
+    // Abertura do arquivo de inscricoes
+    const jsonPathInscricoes = path.join(__dirname, '.', 'db', 'banco-dados-inscricoes.json');
+    const inscricoesBD = JSON.parse(fs.readFileSync(jsonPathInscricoes, { encoding: 'utf8', flag: 'r' }));
+
+    // Abertura do arquivo de usuarios
+    const jsonPathUsuarios = path.join(__dirname, '.', 'db', 'banco-dados-usuario.json');
+    const usuariosBD = JSON.parse(fs.readFileSync(jsonPathUsuarios, { encoding: 'utf8', flag: 'r' }));
+
+    const params = req.params;
+    const listaInscricoes = [];
+
+    // Pegar os ids das inscrições do usuário com id retornado no req.param
+    for(let user of usuariosBD) {
+        if(params.idUser === user.id) {
+            const inscricoesUser = user.inscricoes;
+            // Pegar informações das inscrições com os ids, no arquivo
+            for(let inscU of inscricoesUser) {
+                for(let inscricao of inscricoesBD) {
+                    // Se o id da inscrição do usuário for igual o id de uma inscrição no arquivo, adicionar ela em uma lista
+                    if(inscU.id === inscricao.id) {
+                        listaInscricoes.push(inscricao);
+                    }
+                }
+            }
+        }
+    }
+    // Retornar a lista com as inscrições do usuário em formato de objeto
+    return res.json(listaInscricoes);
+
+});
+
+
 // Rota para retorno das informações do usuário descriptografadas
 app.get('/descrypt', verificaToken, (req, res) => {
     
