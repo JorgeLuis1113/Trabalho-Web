@@ -1,9 +1,14 @@
 import styles from './Cadastro.module.css'
+import {set, useForm} from 'react-hook-form';
+import axios from 'axios';
+import * as yup from 'yup';
+import {yupResolver} from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+
 function Cadastro(){
-    
+
     const [msg, setMsg] = useState();
     const [userCriado,setUserCriado] = useState(false);
 
@@ -27,7 +32,7 @@ function Cadastro(){
     const submit = async (data) => {
         
         try {
-            const response = await axios.post('http://localhost:3000/create-user', data);
+            const response = await axios.post('http://localhost:3000/cadastro', data);
             setMsg(response.data);
             if(response.data.includes('sucesso'))
                 setUserCriado(true);
@@ -43,7 +48,7 @@ function Cadastro(){
             <section className={styles.container}>
                 <p>Cadastro</p>
                 <div className={styles.box}>
-                    <form onSubmite={handleSubmit(submit)} noValidate>
+                    <form className={styles.forms} onSubmite={handleSubmit(submit)} noValidate>
                         <label htmlFor="username" placeholder="usuário">Usuário</label>
                         <input type='text' id='username' {...register('username')}/>
                         <p className='erro'>{errors.username?.message}</p>
@@ -60,11 +65,10 @@ function Cadastro(){
                         <input type='password' id='passwordConf' {...register('passwordConf')}/>
                         <p className='erro'>{errors.passwordConf?.message}</p>
 
-                        <p className='server-response'>{msg}<Link to='/login' style={{visibility : userCriado ? 'visible' : 'hidden'}}>Fazer Login</Link></p>
-
-                        <button>Criar Usuário</button>
+                        <button className={styles.btn}>Criar Usuário</button>
                     </form>
                 </div>
+                <p className='server-response'>{msg}<Link to='/login' style={{visibility : userCriado ? 'visible' : 'hidden'}}>Fazer Login</Link></p>
             </section>
         </>
     )
