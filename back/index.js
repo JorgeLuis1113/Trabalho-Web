@@ -20,3 +20,22 @@ app.listen(3000, () => {
 // Importando classes
 const User = require('./model/User');
 const Inscricao = require('./model/Inscricao');
+
+// Verificação do token
+function verificaToken(req, res, next) {
+    const authHeaders = req.headers['authorization'];
+
+    // Bearer token
+    const token = authHeaders && authHeaders.split(' ')[1];
+    console.log(token);
+    
+    if(token == null) {
+        return res.status(401).send('Acesso negado');
+    }
+
+    jwt.verify(token, process.env.TOKEN, (err) => {
+        if(err) {
+            return res.status(403).send('Token inválido/expirado');
+        }
+    });
+}
