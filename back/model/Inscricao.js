@@ -1,6 +1,6 @@
 class Inscricao {
 
-    constructor(id, nome, idade, cidade, curso, redeSocial, celular, sobre, curiosidade, motivoEscolha) {
+    constructor(id, nome, idade, cidade, curso, redeSocial, celular, sobre, curiosidade, motivoEscolha, republica) {
         this.id = id;
         this.nome = nome;
         this.idade = idade;
@@ -11,6 +11,7 @@ class Inscricao {
         this.sobre = sobre;
         this.curiosidade = curiosidade;
         this.motivoEscolha = motivoEscolha;
+        this.republica = republica;
     }
   }
   

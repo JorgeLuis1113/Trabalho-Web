@@ -130,7 +130,7 @@ app.get('/republicas/:nome', verificaToken, (req, res) => {
 // Rota para criação de uma inscrição
 app.post('/formulario', verificaToken, (req, res) => {
 
-    const {nome, idade, cidade, curso, redeSocial, celular, sobre, curiosidade, motivoEscolha, republicaId, username} = req.body;
+    const {nome, idade, cidade, curso, redeSocial, celular, sobre, curiosidade, motivoEscolha, republica, republicaId, username} = req.body;
 
     // Abertura do arquivo de inscricoes
     const jsonPathInscricoes = path.join(__dirname, '.', 'db', 'banco-dados-inscricoes.json');
@@ -148,7 +148,7 @@ app.post('/formulario', verificaToken, (req, res) => {
     const id = inscricoesBD.length + 1;
 
     // Criando uma inscrição
-    const inscricao = new Inscricao(id, nome, idade, cidade, curso, redeSocial, celular, sobre, curiosidade, motivoEscolha);
+    const inscricao = new Inscricao(id, nome, idade, cidade, curso, redeSocial, celular, sobre, curiosidade, motivoEscolha, republica);
 
     // Salvando no arquivo
     inscricoesBD.push(inscricao);
@@ -173,7 +173,7 @@ app.post('/formulario', verificaToken, (req, res) => {
 
 
 // Rota para listar inscrições do usuário
-app.get('/inscricoes/:idUser'. verificaToken, (req, res) => {
+app.get('/inscricoes/:idUser', verificaToken, (req, res) => {
 
     // Abertura do arquivo de inscricoes
     const jsonPathInscricoes = path.join(__dirname, '.', 'db', 'banco-dados-inscricoes.json');
@@ -203,7 +203,6 @@ app.get('/inscricoes/:idUser'. verificaToken, (req, res) => {
     }
     // Retornar a lista com as inscrições do usuário em formato de objeto
     return res.json(listaInscricoes);
-
 });
 
 
