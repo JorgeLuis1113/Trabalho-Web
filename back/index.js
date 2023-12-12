@@ -25,7 +25,7 @@ const Inscricao = require('./model/Inscricao');
 app.post('/login', async (req, res) => {
 
     // Extração dos dados do formulário
-    const {email, senha} = req.body;
+    const {email, password} = req.body;
 
     // Abertura do arquivo de usuários
     const jsonPath = path.join(__dirname, '.', 'db', 'banco-dados-usuario.json');
@@ -34,7 +34,7 @@ app.post('/login', async (req, res) => {
     // Teste de usuário no banco de dados
     for(let user of usuariosBD) {
         if(user.email === email) {
-            const senhaValida = await bcrypt.compare(senha, user.password);
+            const senhaValida = await bcrypt.compare(password, user.password);
             
             if(senhaValida) {
                 const token = jwt.sign(user, process.env.TOKEN);
@@ -117,5 +117,6 @@ function verificaToken(req, res, next) {
         if(err) {
             return res.status(403).send('Token inválido/expirado');
         }
+        next();
     });
 }
