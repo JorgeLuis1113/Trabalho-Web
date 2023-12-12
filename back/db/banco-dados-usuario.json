@@ -4,6 +4,9 @@
         "username": "Mira",
         "email": "mira@teste.com",
         "password": "$2b$10$ALUfDbUgkPF1rDW2VjbDn.86Lr2ubj2bKlttUikjXucoUtVHegC8i",
-        
-      }
+        "inscricoes": [
+            1,
+            2
+        ]
+    }
 ]
