@@ -21,7 +21,7 @@ app.listen(3000, () => {
 const User = require('./model/User');
 const Inscricao = require('./model/Inscricao');
 
-// Autenticação do usuário
+// Rota de autenticação do usuário
 app.post('/login', async (req, res) => {
 
     // Extração dos dados do formulário
@@ -29,7 +29,7 @@ app.post('/login', async (req, res) => {
 
     // Abertura do arquivo de usuários
     const jsonPath = path.join(__dirname, '.', 'db', 'banco-dados-usuario.json');
-    const usuariosBD = JSON.parse(fs.readFileSync(jsonPath, {encoding: 'utf8', flag: 'r'}))
+    const usuariosBD = JSON.parse(fs.readFileSync(jsonPath, {encoding: 'utf8', flag: 'r'}));
 
     // Teste de usuário no banco de dados
     for(let user of usuariosBD) {
@@ -47,6 +47,49 @@ app.post('/login', async (req, res) => {
     }
     // Não existe usuário com o email
     return res.status(409).send(`Usuário com ${email} não existe. Considere criar uma conta!`);
+});
+
+// Rota de cadastro de um usuario
+app.post('/cadastro', async (req, res) => {
+
+    // Extração dos dados do formulário
+    const {username, email, password, passwordConf} = req.body;
+
+    // Abertura do arquivo de usuarios
+    const jsonPath = path.join(__dirname, '.', 'db', 'banco-dados-usuario.json');
+    const usuariosBD = JSON.parse(fs.readFileSync(jsonPath, {encoding: 'utf8', flag: 'r'}))
+
+    // Teste de email e username (devem ser únicos)
+    for(let user of usuariosBD) {
+        // Email e username em uso
+        if(user.email === email && user.username === username) {
+            return res.status(409).send('Email e username informados já estão em uso');
+        }
+        // Apenas email em uso
+        if(user.email === email) {
+            return res.status(409).send('O email informado já está em uso');
+        }
+        // Apenas username em uso
+        if(user.username === username) {
+            return res.status(409).send('O username informado já está em uso');
+        }        
+    }
+
+    // Não existe usuário com email e username informados
+    // Criar id incremental
+    let id = usuariosBD.length + 1;
+
+    // Criptografar a senha
+    const salt = await bcrypt.genSalt(10);
+    const senhaCrypt = await bcrypt.hash(senha, salt);
+
+    // Criar um objeto user com as informações
+    const user = new User(id, username, email, senhaCrypt);
+
+    // Inserir o novo usuário no arquivo
+    usuariosBD.push(user);
+    fs.writeFileSync(jsonPath, JSON.stringify(usuariosBD, null, 2));
+    res.send('Usuário criado com sucesso');
 });
 
 // Verificação do token
