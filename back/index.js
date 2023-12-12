@@ -53,7 +53,7 @@ app.post('/login', async (req, res) => {
 app.post('/cadastro', async (req, res) => {
 
     // Extração dos dados do formulário
-    const {username, email, password, passwordConf} = req.body;
+    const {username, email, password} = req.body;
 
     // Abertura do arquivo de usuarios
     const jsonPath = path.join(__dirname, '.', 'db', 'banco-dados-usuario.json');
@@ -77,11 +77,11 @@ app.post('/cadastro', async (req, res) => {
 
     // Não existe usuário com email e username informados
     // Criar id incremental
-    let id = usuariosBD.length + 1;
+    const id = usuariosBD.length + 1;
 
     // Criptografar a senha
     const salt = await bcrypt.genSalt(10);
-    const senhaCrypt = await bcrypt.hash(senha, salt);
+    const senhaCrypt = await bcrypt.hash(password, salt);
 
     // Criar um objeto user com as informações
     const user = new User(id, username, email, senhaCrypt);
