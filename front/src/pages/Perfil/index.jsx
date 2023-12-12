@@ -54,11 +54,6 @@ function Perfil(){
                         <p className={styles.subtitulo}>Email</p>
                         <p>{resposta.data['email']}</p>
                     </section>
-                    <hr/>
-                    <section className={styles.secoes}>
-                        <p className={styles.subtitulo}>Senha</p>
-                        <p>{resposta.data['']}</p>
-                    </section>
                 </div>
                 <section>
                     <button className={styles.btn}>Editar</button>
