@@ -9,7 +9,7 @@ function Card(){
             <p className={styles.titulo}>[Nome da República]</p>
             <p>Texto descritivo da república</p>
             <button className={styles.btn}>
-                <Link to="/Rep" className={styles.links}>Inscreva-se</Link>
+                <Link to="/Rep" className={styles.links}>Informações</Link>
             </button>
         </section>
     )
