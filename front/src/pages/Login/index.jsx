@@ -57,8 +57,9 @@ function Login(){
                         <input type="password" id="password" {...register('password')} />
                         <p className={styles.erro}>{errors.password?.message}</p>
 
+                        <button className={styles.btn}>Login</button>
+
                         <section className={styles.botoes}>
-                            <button className={styles.btn}>Login</button>
                             <button className={styles.btn}><Link  className={styles.btn}to="/cadastro">Cadastre-se</Link></button>
                         </section>
                     </form>
