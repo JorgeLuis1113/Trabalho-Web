@@ -7,6 +7,7 @@ import Perfil from "./pages/Perfil";
 import Rep from "./pages/Rep";
 import Republicas from "./pages/Republicas";
 import Formulario from "./pages/Formulario";
+import Editor from "./pages/Editor"
 
 function AppRoutes(){
     return (
@@ -20,6 +21,7 @@ function AppRoutes(){
                 <Route path="/rep" element={<Rep/>}></Route>
                 <Route path="/republicas" element={<Republicas/>}></Route>
                 <Route path="/formulario" element={<Formulario/>}></Route>
+                <Route path="/editor" element={<Editor/>}></Route>
             </Routes>
         </BrowserRouter>
     )

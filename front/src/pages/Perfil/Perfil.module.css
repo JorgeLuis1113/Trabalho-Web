@@ -54,6 +54,7 @@
     margin-right: 20px;
     background-color: var(--secondary);
     color: var(--white);
+    text-decoration: none;
 }
 
 .container button:hover{
