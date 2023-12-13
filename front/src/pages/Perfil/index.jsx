@@ -56,7 +56,7 @@ function Perfil(){
                     </section>
                 </div>
                 <section>
-                    <button className={styles.btn}>Editar</button>
+                    <button className={styles.btn}><Link  className={styles.btn}to="/editor">Editar</Link></button>
                     <button className={styles.btn}>Excluir</button>
                 </section>
             </section>

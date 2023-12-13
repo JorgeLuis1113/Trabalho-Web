@@ -29,7 +29,8 @@ function Login(){
             const response = await axios.post('http://localhost:3000/login', data);
 
             //Extrair o token
-            const token = response.data.token;
+            const token = response.data;
+            console.log(token)
             sessionStorage.setItem('token', token);
             if(token) 
                 setMsg('Autenticado');
